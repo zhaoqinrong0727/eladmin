@@ -25,11 +25,14 @@ public class GenConfigController {
      */
     @GetMapping(value = "/genConfig")
     public ResponseEntity get(){
-        return new ResponseEntity(genConfigService.find(), HttpStatus.OK);
+
+//        return new ResponseEntity(genConfigService.find(), HttpStatus.OK);
+        return new ResponseEntity(HttpStatus.OK);
     }
 
     @PutMapping(value = "/genConfig")
     public ResponseEntity emailConfig(@Validated @RequestBody GenConfig genConfig){
-        return new ResponseEntity(genConfigService.update(genConfig),HttpStatus.OK);
+//        return new ResponseEntity(genConfigService.update(genConfig),HttpStatus.OK);.
+        return new ResponseEntity(HttpStatus.OK);
     }
 }

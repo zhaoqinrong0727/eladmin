@@ -32,13 +32,15 @@ public class QuartzJobController {
     @GetMapping(value = "/jobs")
     @PreAuthorize("hasAnyRole('ADMIN','JOB_ALL','JOB_SELECT')")
     public ResponseEntity getJobs(JobQueryCriteria criteria, Pageable pageable){
-        return new ResponseEntity(quartzJobService.queryAll(criteria,pageable), HttpStatus.OK);
+        return new ResponseEntity(HttpStatus.OK);
+//        return new ResponseEntity(quartzJobService.queryAll(criteria,pageable), HttpStatus.OK);
     }
 
     @GetMapping(value = "/jobLogs")
     @PreAuthorize("hasAnyRole('ADMIN','JOB_ALL','JOB_SELECT')")
     public ResponseEntity getJobLogs(JobQueryCriteria criteria, Pageable pageable){
-        return new ResponseEntity(quartzJobService.queryAllLog(criteria,pageable), HttpStatus.OK);
+        return new ResponseEntity(HttpStatus.OK);
+//        return new ResponseEntity(quartzJobService.queryAllLog(criteria,pageable), HttpStatus.OK);
     }
 
     @Log("新增定时任务")
@@ -48,38 +50,43 @@ public class QuartzJobController {
         if (resources.getId() != null) {
             throw new BadRequestException("A new "+ ENTITY_NAME +" cannot already have an ID");
         }
-        return new ResponseEntity(quartzJobService.create(resources),HttpStatus.CREATED);
+        return new ResponseEntity(HttpStatus.OK);
+//        return new ResponseEntity(quartzJobService.create(resources),HttpStatus.CREATED);
     }
 
     @Log("修改定时任务")
     @PutMapping(value = "/jobs")
     @PreAuthorize("hasAnyRole('ADMIN','JOB_ALL','JOB_EDIT')")
     public ResponseEntity update(@Validated(QuartzJob.Update.class) @RequestBody QuartzJob resources){
-        quartzJobService.update(resources);
-        return new ResponseEntity(HttpStatus.NO_CONTENT);
+        return new ResponseEntity(HttpStatus.OK);
+//        quartzJobService.update(resources);
+//        return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 
     @Log("更改定时任务状态")
     @PutMapping(value = "/jobs/{id}")
     @PreAuthorize("hasAnyRole('ADMIN','JOB_ALL','JOB_EDIT')")
     public ResponseEntity updateIsPause(@PathVariable Long id){
-        quartzJobService.updateIsPause(quartzJobService.findById(id));
-        return new ResponseEntity(HttpStatus.NO_CONTENT);
+        return new ResponseEntity(HttpStatus.OK);
+//        quartzJobService.updateIsPause(quartzJobService.findById(id));
+//        return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 
     @Log("执行定时任务")
     @PutMapping(value = "/jobs/exec/{id}")
     @PreAuthorize("hasAnyRole('ADMIN','JOB_ALL','JOB_EDIT')")
     public ResponseEntity execution(@PathVariable Long id){
-        quartzJobService.execution(quartzJobService.findById(id));
-        return new ResponseEntity(HttpStatus.NO_CONTENT);
+//        quartzJobService.execution(quartzJobService.findById(id));
+//        return new ResponseEntity(HttpStatus.NO_CONTENT);
+        return new ResponseEntity(HttpStatus.OK);
     }
 
     @Log("删除定时任务")
     @DeleteMapping(value = "/jobs/{id}")
     @PreAuthorize("hasAnyRole('ADMIN','JOB_ALL','JOB_DELETE')")
     public ResponseEntity delete(@PathVariable Long id){
-        quartzJobService.delete(quartzJobService.findById(id));
+//        quartzJobService.delete(quartzJobService.findById(id));
+//        return new ResponseEntity(HttpStatus.OK);
         return new ResponseEntity(HttpStatus.OK);
     }
 }

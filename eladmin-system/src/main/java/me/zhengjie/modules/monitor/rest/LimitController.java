@@ -22,6 +22,7 @@ public class LimitController {
     @Limit(key = "test", period = 60, count = 10, name = "testLimit", prefix = "limit")
     @GetMapping("/limit")
     public int testLimit() {
-        return ATOMIC_INTEGER.incrementAndGet();
+//        return ATOMIC_INTEGER.incrementAndGet();
+        return 0;
     }
 }

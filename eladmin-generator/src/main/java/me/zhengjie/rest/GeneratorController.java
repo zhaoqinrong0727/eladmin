@@ -40,8 +40,9 @@ public class GeneratorController {
     public ResponseEntity getTables(@RequestParam(defaultValue = "") String name,
                                    @RequestParam(defaultValue = "0")Integer page,
                                    @RequestParam(defaultValue = "10")Integer size){
-        int[] startEnd = PageUtil.transToStartEnd(page+1, size);
-        return new ResponseEntity(generatorService.getTables(name,startEnd), HttpStatus.OK);
+//        int[] startEnd = PageUtil.transToStartEnd(page+1, size);
+//        return new ResponseEntity(generatorService.getTables(name,startEnd), HttpStatus.OK);
+        return new ResponseEntity(HttpStatus.OK);
     }
 
     /**
@@ -51,7 +52,8 @@ public class GeneratorController {
      */
     @GetMapping(value = "/generator/columns")
     public ResponseEntity getTables(@RequestParam String tableName){
-        return new ResponseEntity(generatorService.getColumns(tableName), HttpStatus.OK);
+//        return new ResponseEntity(generatorService.getColumns(tableName), HttpStatus.OK);
+        return new ResponseEntity(HttpStatus.OK);
     }
 
     /**
@@ -64,7 +66,8 @@ public class GeneratorController {
         if(!generatorEnabled){
             throw new BadRequestException("此环境不允许生成代码！");
         }
-        generatorService.generator(columnInfos,genConfigService.find(),tableName);
+//        generatorService.generator(columnInfos,genConfigService.find(),tableName);
+//        return new ResponseEntity(HttpStatus.OK);
         return new ResponseEntity(HttpStatus.OK);
     }
 }
